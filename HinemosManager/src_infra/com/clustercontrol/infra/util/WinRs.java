@@ -10,20 +10,14 @@ package com.clustercontrol.infra.util;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.X509TrustManager;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.hc.client5.http.ssl.HttpsSupport;
-import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 
 import intel.management.wsman.ManagedInstance;
 import intel.management.wsman.ManagedReference;
@@ -160,30 +154,12 @@ public class WinRs {
 		conn.setUserpassword(password);
 		conn.setTimeout(httpTimeout);
 		
-		boolean sslTrustall = HinemosPropertyCommon.infra_winrm_ssl_trustall.getBooleanValue();
+		boolean sslTrustall = SslTrustConfig.isTrustAll(HinemosPropertyCommon.infra_winrm_ssl_trustall);
 		if(sslTrustall) {
-			X509TrustManager tm = new X509TrustManager() {
-				@Override
-				public X509Certificate[] getAcceptedIssuers() {
-					return null;
-				}
-			
-				@Override
-				public void checkServerTrusted(X509Certificate[] arg0, String arg1)
-					throws CertificateException {
-				}
-			
-				@Override
-				public void checkClientTrusted(X509Certificate[] arg0, String arg1)
-					throws CertificateException {
-				}
-			};
-
-			conn.setTrustManager(tm);
-			conn.setHostnameVerifier(NoopHostnameVerifier.INSTANCE);
-		} else {
-			conn.setHostnameVerifier(HttpsSupport.getDefaultHostnameVerifier());
+			SslTrustConfig.logTrustAllWarning("WinRS:" + url);
+			conn.setTrustManager(SslTrustConfig.createTrustAllManager());
 		}
+		conn.setHostnameVerifier(SslTrustConfig.getHostnameVerifier(sslTrustall));
 
 		return conn;
 	}

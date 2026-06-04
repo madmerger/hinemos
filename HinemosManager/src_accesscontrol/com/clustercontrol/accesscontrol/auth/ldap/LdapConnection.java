@@ -16,8 +16,6 @@ import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -45,6 +43,8 @@ import javax.net.ssl.X509TrustManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.sun.jndi.ldap.LdapCtxFactory;
 
 /**
@@ -145,7 +145,9 @@ public class LdapConnection implements Closeable {
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, userDn);
 		env.put(Context.SECURITY_CREDENTIALS, userPw);
-		if (url.toLowerCase().startsWith("ldaps:") && lenientSsl) {
+		boolean effectiveLenientSsl = lenientSsl || SslTrustConfig.isTrustAll(HinemosPropertyCommon.access_ldap_ssl_trustall);
+		if (url.toLowerCase().startsWith("ldaps:") && effectiveLenientSsl) {
+			SslTrustConfig.logTrustAllWarning("LDAP:" + url);
 			env.put("java.naming.ldap.factory.socket", LenientSSLSocketFactory.class.getName());
 		}
 		env.put("com.sun.jndi.ldap.connect.pool", "false");
@@ -400,35 +402,7 @@ public class LdapConnection implements Closeable {
 
 		public LenientSSLSocketFactory() throws KeyManagementException, NoSuchAlgorithmException {
 			sslContext = SSLContext.getInstance(SSL_PROTOCOL);
-			sslContext.init(null, new X509TrustManager[] { new X509TrustManager() {
-				@Override
-				public void checkClientTrusted(X509Certificate[] chain, String authType)
-						throws CertificateException {
-					// NOP
-				}
-
-				@Override
-				public void checkServerTrusted(X509Certificate[] chain, String authType)
-						throws CertificateException {
-					// デバッグログを出力するだけ
-					if (!log.isDebugEnabled()) return;
-
-					for (int i = 0; i < chain.length; ++i) {
-						X509Certificate cert = chain[i];
-						StringBuilder msg = new StringBuilder();
-						msg.append("chain").append(i).append("={")
-								.append("issuer=").append(cert.getIssuerX500Principal())
-								.append(",sans=").append(Objects.toString(cert.getSubjectAlternativeNames()))
-								.append("},");
-						log.debug("checkServerTrusted: " + msg);
-					}
-				}
-
-				@Override
-				public X509Certificate[] getAcceptedIssuers() {
-					return null;
-				}
-			} }, new SecureRandom());
+			sslContext.init(null, new X509TrustManager[] { SslTrustConfig.createTrustAllManager() }, new SecureRandom());
 
 			delegate = sslContext.getSocketFactory();
 		}

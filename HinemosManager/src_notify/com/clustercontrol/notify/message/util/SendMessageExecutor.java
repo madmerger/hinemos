@@ -24,6 +24,7 @@ import org.apache.hc.core5.http.HttpStatus;
 
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
 import com.clustercontrol.commons.util.InternalIdCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.commons.util.MonitoredThreadPoolExecutor;
 import com.clustercontrol.fault.HinemosUnknown;
 import com.clustercontrol.util.apllog.AplLogger;
@@ -242,7 +243,7 @@ public class SendMessageExecutor {
 		builder.setRequestTimeout(readTimeout);
 		builder.setCancelProxyCache(true);
 		builder.setKeepAlive(true);
-		builder.setNeedAuthSSLCert(true);
+		builder.setNeedAuthSSLCert(!SslTrustConfig.isTrustAll(HinemosPropertyCommon.notify_message_ssl_trustall));
 		builder.setProxyHost(HinemosPropertyCommon.notify_message_webapi_proxy_host.getStringValue());
 		builder.setProxyPort(HinemosPropertyCommon.notify_message_webapi_proxy_port.getIntegerValue());
 		builder.setProxyUser(HinemosPropertyCommon.notify_message_webapi_proxy_user.getStringValue());

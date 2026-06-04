@@ -35,6 +35,7 @@ import com.clustercontrol.bean.PriorityConstant;
 import com.clustercontrol.collect.bean.Sample;
 import com.clustercontrol.collect.util.CollectDataUtil;
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.fault.FacilityNotFound;
 import com.clustercontrol.fault.HinemosUnknown;
 import com.clustercontrol.fault.InvalidRole;
@@ -364,7 +365,7 @@ public class RunMonitorHttpScenario extends RunMonitor {
 				.setRequestTimeout(m_httpScenarioCheckInfo.getRequestTimeout() == null ? 0: m_httpScenarioCheckInfo.getRequestTimeout())
 				.setCancelProxyCache(HinemosPropertyCommon.monitor_http_scenario_disable_proxy_cache.getBooleanValue())
 				.setKeepAlive(true)
-				.setNeedAuthSSLCert(! HinemosPropertyCommon.monitor_http_ssl_trustall.getBooleanValue());
+				.setNeedAuthSSLCert(!SslTrustConfig.isTrustAll(HinemosPropertyCommon.monitor_http_ssl_trustall));
 			if (m_httpScenarioCheckInfo.getProxyFlg()) {
 				builder
 				.setProxyURL(m_httpScenarioCheckInfo.getProxyUrl())

@@ -20,8 +20,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,14 +43,10 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
-import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
-import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.core5.http.io.SocketConfig;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicHeader;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.apache.hc.core5.ssl.TrustStrategy;
 import org.apache.hc.core5.util.Timeout;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.logging.Log;
@@ -62,6 +56,7 @@ import com.clustercontrol.bean.HttpMethodTypeConstant;
 import com.clustercontrol.bean.PriorityConstant;
 import com.clustercontrol.commons.bean.RestAccessAuthTypeConstant;
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.commons.util.ILock;
 import com.clustercontrol.commons.util.ILockManager;
 import com.clustercontrol.commons.util.InternalIdCommon;
@@ -487,7 +482,7 @@ public class AccessRest implements Notifier {
 			m_log.debug("getHttpClient() : start :  restAccessId = " + getRestAccessId(restAccessInfo));
 		}
 
-		boolean ssl_trustall = HinemosPropertyCommon.notify_rest_ssl_trustall.getBooleanValue();
+		boolean ssl_trustall = SslTrustConfig.isTrustAll(HinemosPropertyCommon.notify_rest_ssl_trustall);
 		
 		CloseableHttpClient m_client = null;
 		CredentialsStore m_cledentialProvider = new BasicCredentialsProvider();
@@ -500,18 +495,10 @@ public class AccessRest implements Notifier {
 				.setDefaultCredentialsProvider(m_cledentialProvider)
 				.setDefaultHeaders(headers);
 
-		// trustall =true なら SSL の認証カット
 		if (ssl_trustall) {
-			TrustStrategy trustStrategy = new TrustStrategy() {
-				@Override
-				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-					return true;
-				}
-			};
+			SslTrustConfig.logTrustAllWarning("AccessRest");
 			try {
-				connectionManagerBuilder.setSSLSocketFactory(
-						new SSLConnectionSocketFactory(new SSLContextBuilder().loadTrustMaterial(null, trustStrategy).build(),
-						new NoopHostnameVerifier()));
+				connectionManagerBuilder.setSSLSocketFactory(SslTrustConfig.createTrustAllSSLSocketFactory());
 			} catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
 				m_log.error("CloseableHttpClient() : setSSLSocketFactory : message= " + e.getMessage(), e);
 				throw e;

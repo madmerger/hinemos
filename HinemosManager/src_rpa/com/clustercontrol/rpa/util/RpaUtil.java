@@ -14,8 +14,6 @@ import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,15 +37,11 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
-import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
-import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.io.SocketConfig;
 import org.apache.hc.core5.http.message.BasicHeader;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.apache.hc.core5.ssl.TrustStrategy;
 import org.apache.hc.core5.util.Timeout;
 
 import com.clustercontrol.accesscontrol.bean.PrivilegeConstant.ObjectPrivilegeMode;
@@ -61,6 +55,7 @@ import com.clustercontrol.bean.SnmpVersionConstant;
 import com.clustercontrol.commons.bean.Schedule;
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
 import com.clustercontrol.commons.util.NotifyGroupIdGenerator;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.fault.HinemosUnknown;
 import com.clustercontrol.fault.RpaManagementRestConnectFailed;
 import com.clustercontrol.fault.RpaManagementToolMasterNotFound;
@@ -156,19 +151,20 @@ public class RpaUtil {
 	 * RPA管理ツールアカウント設定からコネクションタイムアウトとリクエストタイムアウトを指定してHTTPクライアントを作成する
 	 */
 	public static CloseableHttpClient createHttpClient(RpaManagementToolAccount account, int connectTimeout, int requestTimeout) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, NullPointerException {
+		boolean sslTrustAll = SslTrustConfig.isTrustAll(HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall);
 		if (account.getProxyFlg()) {
 			return createHttpClient(
 					connectTimeout,
 					requestTimeout,
 					account.getProxyUrl(), account.getProxyPort(), account.getProxyUser(), account.getProxyPassword(),
-					HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall.getBooleanValue()
+					sslTrustAll
 					);
 		} else {
 			return createHttpClient(
 					connectTimeout,
 					requestTimeout,
 					null, null, null, null,
-					HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall.getBooleanValue()
+					sslTrustAll
 					);
 		}
 	}
@@ -195,7 +191,7 @@ public class RpaUtil {
 				HinemosPropertyCommon.rpa_management_rest_client_config_connection_timeout.getIntegerValue(),
 				HinemosPropertyCommon.rpa_management_rest_client_config_read_timeout.getIntegerValue(),
 				proxyUrl, proxyPort, proxyUser, proxyPassword,
-				HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall.getBooleanValue());
+				SslTrustConfig.isTrustAll(HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall));
 	}
 	
 	public static CloseableHttpClient createHttpClient(
@@ -253,16 +249,8 @@ public class RpaUtil {
 		}
 		
 		if (sslTrustAll) {
-			// SSL の認証カット
-			TrustStrategy trustStrategy = new TrustStrategy() {
-				@Override
-				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-					return true;
-				}
-			};
-			connectionManagerBuilder.setSSLSocketFactory(
-					new SSLConnectionSocketFactory(new SSLContextBuilder().loadTrustMaterial(null, trustStrategy).build(),
-					new NoopHostnameVerifier()));
+			SslTrustConfig.logTrustAllWarning("RpaUtil");
+			connectionManagerBuilder.setSSLSocketFactory(SslTrustConfig.createTrustAllSSLSocketFactory());
 		}
 
 		builder.setConnectionManager(connectionManagerBuilder.build());
