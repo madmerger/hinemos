@@ -17,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.fault.MonitorNotFound;
 import com.clustercontrol.http.model.HttpCheckInfo;
 import com.clustercontrol.http.util.GetHttpResponse;
@@ -111,7 +112,7 @@ public class RunMonitorHttp extends RunMonitorNumericValueType {
 		try (GetHttpResponse m_request = GetHttpResponse.custom()
 				.setConnectTimeout(m_httpTimeout)
 				.setRequestTimeout(m_httpTimeout)
-				.setNeedAuthSSLCert(! HinemosPropertyCommon.monitor_http_ssl_trustall.getBooleanValue())
+				.setNeedAuthSSLCert(!SslTrustConfig.isTrustAll(HinemosPropertyCommon.monitor_http_ssl_trustall))
 				.build()) {
 			result = m_request.execute(url);
 			if(result){
