@@ -22,8 +22,6 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -58,8 +56,6 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
-import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
-import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpHost;
@@ -69,11 +65,10 @@ import org.apache.hc.core5.http.io.SocketConfig;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.apache.hc.core5.http.message.StatusLine;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.apache.hc.core5.ssl.TrustStrategy;
 import org.apache.hc.core5.util.Timeout;
 
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.util.HinemosTime;
 import com.clustercontrol.util.MessageConstant;
 
@@ -624,16 +619,8 @@ public class GetHttpResponse implements Closeable {
 					.setDefaultHeaders(headers);
 
 			if (!this.m_needAuthSSLCert) {
-				// SSL の認証カット
-				TrustStrategy trustStrategy = new TrustStrategy() {
-					@Override
-					public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-						return true;
-					}
-				};
-				connectionManagerBuilder.setSSLSocketFactory(
-						new SSLConnectionSocketFactory(new SSLContextBuilder().loadTrustMaterial(null, trustStrategy).build(),
-						new NoopHostnameVerifier()));
+				SslTrustConfig.logTrustAllWarning("GetHttpResponse");
+				connectionManagerBuilder.setSSLSocketFactory(SslTrustConfig.createTrustAllSSLSocketFactory());
 			}
 			RequestConfig requestConfig = RequestConfig.custom()
 					.setCookieSpec(StandardCookieSpec.RELAXED)

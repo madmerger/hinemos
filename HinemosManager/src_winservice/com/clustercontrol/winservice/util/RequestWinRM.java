@@ -11,19 +11,14 @@ package com.clustercontrol.winservice.util;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.Date;
 import java.util.List;
 
-import javax.net.ssl.X509TrustManager;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.hc.client5.http.ssl.HttpsSupport;
-import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
 
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.fault.HinemosUnknown;
 import com.clustercontrol.plugin.impl.ProxyManagerPlugin;
 import com.clustercontrol.util.HinemosTime;
@@ -147,31 +142,12 @@ public class RequestWinRM {
 		m_con.setUserpassword(userPassword);
 		m_con.setTimeout(timeout);
 
-		boolean sslTrustall = HinemosPropertyCommon.monitor_winservice_ssl_trustall.getBooleanValue();
+		boolean sslTrustall = SslTrustConfig.isTrustAll(HinemosPropertyCommon.monitor_winservice_ssl_trustall);
 		if(sslTrustall) {
-			X509TrustManager tm = new X509TrustManager() {
-				@Override
-				public X509Certificate[] getAcceptedIssuers() {
-					return null;
-				}
-			
-				@Override
-				public void checkServerTrusted(X509Certificate[] arg0, String arg1)
-					throws CertificateException {
-				}
-			
-				@Override
-				public void checkClientTrusted(X509Certificate[] arg0, String arg1)
-					throws CertificateException {
-				}
-			};
-
-			m_con.setTrustManager(tm);
-			m_con.setHostnameVerifier(NoopHostnameVerifier.INSTANCE);
-		} else {
-			// HTTP監視で使用しているライブラリ common-httpclient の HostnameVerifier を使用する
-			m_con.setHostnameVerifier(HttpsSupport.getDefaultHostnameVerifier());
+			SslTrustConfig.logTrustAllWarning("WinRM:" + m_url);
+			m_con.setTrustManager(SslTrustConfig.createTrustAllManager());
 		}
+		m_con.setHostnameVerifier(SslTrustConfig.getHostnameVerifier(sslTrustall));
 
 		// URIの設定
 		ManagedReference ref = m_con.newReference(URI_WIN32_SERVICE);
