@@ -49,10 +49,25 @@ public class JschUtil {
 	
 	static {
 		try {
-			// HostKeyチェックを行わない
+			String strictHostKeyChecking = HinemosPropertyCommon.infra_ssh_strict_host_key_checking.getStringValue();
+			if (!"yes".equals(strictHostKeyChecking) && !"no".equals(strictHostKeyChecking) && !"ask".equals(strictHostKeyChecking)) {
+				m_log.warn("static : invalid value for infra.ssh.strict.host.key.checking='" + strictHostKeyChecking + "', falling back to 'yes'");
+				strictHostKeyChecking = "yes";
+			}
+			if ("no".equals(strictHostKeyChecking)) {
+				m_log.warn("static : StrictHostKeyChecking is disabled (infra.ssh.strict.host.key.checking=no). This is insecure and vulnerable to MITM attacks.");
+			}
+			m_log.info("static : StrictHostKeyChecking=" + strictHostKeyChecking);
+
 			Hashtable<String, String> config = new Hashtable<>();
-			config.put("StrictHostKeyChecking", "no");
+			config.put("StrictHostKeyChecking", strictHostKeyChecking);
 			JSch.setConfig(config);
+
+			String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
+			if (knownHostsPath != null && !knownHostsPath.isEmpty()) {
+				JSch.setConfig("KnownHostsFile", knownHostsPath);
+				m_log.info("static : KnownHostsFile=" + knownHostsPath);
+			}
 		} catch (Exception e) {
 			m_log.warn("static " + e.getClass().getName() + ", " + e.getMessage());
 		}

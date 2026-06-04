@@ -85,6 +85,8 @@ public enum HinemosPropertyCommon implements HinemosPropertyAbstract {
 	hub_transfer_locale(HinemosPropertyBean.string("")),
 	hub_transfer_fluentd_date_format(HinemosPropertyBean.string("")),
 	infra_check_timeout(HinemosPropertyBean.numeric(Long.valueOf(50 * 1000))),
+	infra_ssh_strict_host_key_checking(HinemosPropertyBean.string("yes")),
+	infra_ssh_known_hosts_path(HinemosPropertyBean.string("")),
 	infra_checkcommand_returnvalue_default(HinemosPropertyBean.numeric(1L)),
 	infra_command_md5(HinemosPropertyBean.string("md5sum \"%s\" | awk '{print $1}'")),
 	infra_management_access_input_type(HinemosPropertyBean.numeric(Long.valueOf(InfraNodeInputConstant.TYPE_NODE_PARAM))),

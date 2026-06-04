@@ -17,6 +17,7 @@ import com.clustercontrol.accesscontrol.bean.PrivilegeConstant.ObjectPrivilegeMo
 import com.clustercontrol.infra.factory.SelectInfraManagement;
 import com.clustercontrol.infra.model.InfraManagementInfo;
 import com.clustercontrol.notify.util.INotifyOwnerDeterminer;
+import com.clustercontrol.commons.util.HinemosPropertyCommon;
 import com.clustercontrol.plugin.api.HinemosPlugin;
 import com.jcraft.jsch.JSch;
 
@@ -67,8 +68,16 @@ public class InfraPlugin implements HinemosPlugin {
 
 	@Override
 	public void create() {
-		// サーバー証明書の認証をキャンセルする
-		JSch.setConfig("StrictHostKeyChecking", "no");
+		String strictHostKeyChecking = HinemosPropertyCommon.infra_ssh_strict_host_key_checking.getStringValue();
+		if (!"yes".equals(strictHostKeyChecking) && !"no".equals(strictHostKeyChecking) && !"ask".equals(strictHostKeyChecking)) {
+			strictHostKeyChecking = "yes";
+		}
+		JSch.setConfig("StrictHostKeyChecking", strictHostKeyChecking);
+
+		String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
+		if (knownHostsPath != null && !knownHostsPath.isEmpty()) {
+			JSch.setConfig("KnownHostsFile", knownHostsPath);
+		}
 	}
 
 	@Override
