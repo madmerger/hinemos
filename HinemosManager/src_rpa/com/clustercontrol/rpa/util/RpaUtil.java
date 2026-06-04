@@ -151,19 +151,20 @@ public class RpaUtil {
 	 * RPA管理ツールアカウント設定からコネクションタイムアウトとリクエストタイムアウトを指定してHTTPクライアントを作成する
 	 */
 	public static CloseableHttpClient createHttpClient(RpaManagementToolAccount account, int connectTimeout, int requestTimeout) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, NullPointerException {
+		boolean sslTrustAll = SslTrustConfig.isTrustAll(HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall);
 		if (account.getProxyFlg()) {
 			return createHttpClient(
 					connectTimeout,
 					requestTimeout,
 					account.getProxyUrl(), account.getProxyPort(), account.getProxyUser(), account.getProxyPassword(),
-					HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall.getBooleanValue()
+					sslTrustAll
 					);
 		} else {
 			return createHttpClient(
 					connectTimeout,
 					requestTimeout,
 					null, null, null, null,
-					HinemosPropertyCommon.rpa_management_rest_client_config_ssl_trustall.getBooleanValue()
+					sslTrustAll
 					);
 		}
 	}
