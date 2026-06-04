@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
 
 import com.clustercontrol.accesscontrol.bean.UserIdConstant;
 import com.clustercontrol.commons.util.HinemosPropertyCommon;
+import com.clustercontrol.commons.util.SslTrustConfig;
 import com.clustercontrol.fault.HinemosUnknown;
 import com.clustercontrol.infra.bean.ModuleNodeResult;
 import com.clustercontrol.infra.bean.OkNgConstant;
@@ -406,7 +407,7 @@ public class WinRMUtil {
 	
 	private static String getDownloadScript(String token, String tempFilePath, String fileName) throws HinemosUnknown {
 		String url = HinemosPropertyCommon.infra_transfer_winrm_url.getStringValue();
-		boolean sslTrustall = HinemosPropertyCommon.infra_winrm_ssl_trustall.getBooleanValue();
+		boolean sslTrustall = SslTrustConfig.isTrustAll(HinemosPropertyCommon.infra_winrm_ssl_trustall);
 		
 		if (!url.endsWith("/")) {
 			url += "/";
@@ -479,7 +480,7 @@ public class WinRMUtil {
 		String url = HinemosPropertyCommon.infra_transfer_winrm_url.getStringValue();
 		String pass = HinemosPropertyCommon.infra_transfer_agent_password.getStringValue();
 		String user = UserIdConstant.AGENT;
-		boolean sslTrustall = HinemosPropertyCommon.infra_winrm_ssl_trustall.getBooleanValue();
+		boolean sslTrustall = SslTrustConfig.isTrustAll(HinemosPropertyCommon.infra_winrm_ssl_trustall);
 		
 		if (!url.endsWith("/")) {
 			url += "/";
