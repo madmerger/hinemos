@@ -73,11 +73,6 @@ public class InfraPlugin implements HinemosPlugin {
 			strictHostKeyChecking = "yes";
 		}
 		JSch.setConfig("StrictHostKeyChecking", strictHostKeyChecking);
-
-		String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
-		if (knownHostsPath != null && !knownHostsPath.isEmpty()) {
-			JSch.setConfig("KnownHostsFile", knownHostsPath);
-		}
 	}
 
 	@Override

@@ -62,17 +62,20 @@ public class JschUtil {
 			Hashtable<String, String> config = new Hashtable<>();
 			config.put("StrictHostKeyChecking", strictHostKeyChecking);
 			JSch.setConfig(config);
-
-			String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
-			if (knownHostsPath != null && !knownHostsPath.isEmpty()) {
-				JSch.setConfig("KnownHostsFile", knownHostsPath);
-				m_log.info("static : KnownHostsFile=" + knownHostsPath);
-			}
 		} catch (Exception e) {
 			m_log.warn("static " + e.getClass().getName() + ", " + e.getMessage());
 		}
 	}
 	
+	private static JSch createJSch() throws JSchException {
+		JSch jsch = new JSch();
+		String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
+		if (knownHostsPath != null && !knownHostsPath.isEmpty()) {
+			jsch.setKnownHosts(knownHostsPath);
+		}
+		return jsch;
+	}
+
 	public static ModuleNodeResult execCommand(String user, String password, String host, int port, int timeout,
 			String command, int maxSize, String keypath, String passphrase) {
 		
@@ -81,7 +84,7 @@ public class JschUtil {
 		
 		Session session = null;
 		try {
-			JSch jsch=new JSch();
+			JSch jsch=createJSch();
 			session = jsch.getSession(user, host, port);
 			
 			// connect session
@@ -207,7 +210,7 @@ public class JschUtil {
 		InputStream in = null;
 		
 		try {
-			JSch jsch=new JSch();
+			JSch jsch=createJSch();
 			session = jsch.getSession(user, host, port);
 			
 			if (keypath != null && 0 < keypath.length()) {
@@ -372,7 +375,7 @@ public class JschUtil {
 		try{
 			File srcFile = new File(srcDir + FileTransferModuleInfo.SEPARATOR + srcFilename);
 
-			JSch jsch = new JSch();
+			JSch jsch = createJSch();
 			session = jsch.getSession(user, host, port);
 			if (keypath != null && keypath.length() > 0) {
 				jsch.addIdentity(keypath, passphrase);
@@ -513,7 +516,7 @@ public class JschUtil {
 		
 		FileInputStream srcFis = null;
 		try {
-			JSch jsch = new JSch();
+			JSch jsch = createJSch();
 			session = jsch.getSession(user, host, port);
 			if (keypath != null && keypath.length() > 0) {
 				jsch.addIdentity(keypath, passphrase);
