@@ -30,7 +30,7 @@
 	<classpathentry kind="lib" path="commonlib/commons-codec-1.15.jar" sourcepath="/HinemosCommon/commonlib/commons-codec-1.15-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosManager/lib/jakarta.persistence-api-3.0.0.jar" sourcepath="/HinemosManager/lib/jakarta.persistence-api-3.0.0-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosManager/lib/joda-time-2.10.8.jar" sourcepath="/HinemosManager/lib/joda-time-2.10.8-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosManager/lib/postgresql-42.2.19.jar" sourcepath="/HinemosManager/lib/postgresql-42.2.19-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosManager/lib/postgresql-42.7.4.jar" sourcepath="/HinemosManager/lib/postgresql-42.7.4-sources.jar"/>
 	<classpathentry kind="lib" path="commonlib/jna-5.6.0.jar" sourcepath="/HinemosCommon/commonlib/jna-5.6.0-sources.jar"/>
 	<classpathentry kind="lib" path="commonlib/jna-platform-5.6.0.jar" sourcepath="/HinemosCommon/commonlib/jna-platform-5.6.0-sources.jar"/>
 	<classpathentry kind="lib" path="commonlib_reporting/castor-xml-1.4.1.jar" sourcepath="/HinemosCommon/commonlib/castor-xml-1.4.1-sources.jar"/>
