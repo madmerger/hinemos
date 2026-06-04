@@ -70,7 +70,7 @@
 	<classpathentry kind="lib" path="lib/jakarta.persistence-api-3.0.0.jar" sourcepath="lib/jakarta.persistence-api-3.0.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/joda-time-2.10.8.jar" sourcepath="lib/joda-time-2.10.8-sources.jar"/>
 	<classpathentry kind="lib" path="lib/jsch-0.1.55.jar" sourcepath="lib/jsch-0.1.55-sources.jar"/>
-	<classpathentry kind="lib" path="lib/postgresql-42.2.19.jar" sourcepath="lib/postgresql-42.2.19-sources.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-42.7.4.jar" sourcepath="lib/postgresql-42.7.4-sources.jar"/>
 	<classpathentry kind="lib" path="lib/snmp4j-2.8.6.jar" sourcepath="lib/snmp4j-2.8.6-sources.jar"/>
 	<classpathentry kind="lib" path="lib_rest/aspectjweaver-1.9.6.jar" sourcepath="lib_rest/aspectjweaver-1.9.6-sources.jar"/>
 	<classpathentry kind="lib" path="lib_rest/jackson-module-jaxb-annotations-2.15.1.jar" sourcepath="lib_rest/jackson-module-jaxb-annotations-2.15.1-sources.jar"/>
