@@ -49,15 +49,51 @@ public class JschUtil {
 	
 	static {
 		try {
-			// HostKeyチェックを行わない
+			String strictHostKeyChecking = HinemosPropertyCommon.infra_ssh_strict_host_key_checking.getStringValue();
+			if (!"yes".equals(strictHostKeyChecking) && !"no".equals(strictHostKeyChecking) && !"ask".equals(strictHostKeyChecking)) {
+				m_log.warn("static : invalid value for infra.ssh.strict.host.key.checking='" + strictHostKeyChecking + "', falling back to 'yes'");
+				strictHostKeyChecking = "yes";
+			}
+			if ("no".equals(strictHostKeyChecking)) {
+				m_log.warn("static : StrictHostKeyChecking is disabled (infra.ssh.strict.host.key.checking=no). This is insecure and vulnerable to MITM attacks.");
+			}
+			m_log.info("static : StrictHostKeyChecking=" + strictHostKeyChecking);
+
+			if (!"no".equals(strictHostKeyChecking)) {
+				String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
+				if (knownHostsPath == null || knownHostsPath.isEmpty()) {
+					String defaultPath = System.getProperty("user.home") + File.separator + ".ssh" + File.separator + "known_hosts";
+					if (!new File(defaultPath).isFile()) {
+						m_log.warn("static : StrictHostKeyChecking=" + strictHostKeyChecking + " but no known_hosts file found. "
+								+ "Configure infra.ssh.known.hosts.path or create " + defaultPath + ". SSH connections may be rejected.");
+					}
+				}
+			}
+
 			Hashtable<String, String> config = new Hashtable<>();
-			config.put("StrictHostKeyChecking", "no");
+			config.put("StrictHostKeyChecking", strictHostKeyChecking);
 			JSch.setConfig(config);
 		} catch (Exception e) {
 			m_log.warn("static " + e.getClass().getName() + ", " + e.getMessage());
 		}
 	}
 	
+	private static JSch createJSch() throws JSchException {
+		JSch jsch = new JSch();
+		String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
+		if (knownHostsPath == null || knownHostsPath.isEmpty()) {
+			String defaultPath = System.getProperty("user.home") + File.separator + ".ssh" + File.separator + "known_hosts";
+			if (new File(defaultPath).isFile()) {
+				knownHostsPath = defaultPath;
+				m_log.info("createJSch : using system default known_hosts=" + defaultPath);
+			}
+		}
+		if (knownHostsPath != null && !knownHostsPath.isEmpty()) {
+			jsch.setKnownHosts(knownHostsPath);
+		}
+		return jsch;
+	}
+
 	public static ModuleNodeResult execCommand(String user, String password, String host, int port, int timeout,
 			String command, int maxSize, String keypath, String passphrase) {
 		
@@ -66,7 +102,7 @@ public class JschUtil {
 		
 		Session session = null;
 		try {
-			JSch jsch=new JSch();
+			JSch jsch=createJSch();
 			session = jsch.getSession(user, host, port);
 			
 			// connect session
@@ -192,7 +228,7 @@ public class JschUtil {
 		InputStream in = null;
 		
 		try {
-			JSch jsch=new JSch();
+			JSch jsch=createJSch();
 			session = jsch.getSession(user, host, port);
 			
 			if (keypath != null && 0 < keypath.length()) {
@@ -357,7 +393,7 @@ public class JschUtil {
 		try{
 			File srcFile = new File(srcDir + FileTransferModuleInfo.SEPARATOR + srcFilename);
 
-			JSch jsch = new JSch();
+			JSch jsch = createJSch();
 			session = jsch.getSession(user, host, port);
 			if (keypath != null && keypath.length() > 0) {
 				jsch.addIdentity(keypath, passphrase);
@@ -498,7 +534,7 @@ public class JschUtil {
 		
 		FileInputStream srcFis = null;
 		try {
-			JSch jsch = new JSch();
+			JSch jsch = createJSch();
 			session = jsch.getSession(user, host, port);
 			if (keypath != null && keypath.length() > 0) {
 				jsch.addIdentity(keypath, passphrase);
