@@ -59,6 +59,17 @@ public class JschUtil {
 			}
 			m_log.info("static : StrictHostKeyChecking=" + strictHostKeyChecking);
 
+			if (!"no".equals(strictHostKeyChecking)) {
+				String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
+				if (knownHostsPath == null || knownHostsPath.isEmpty()) {
+					String defaultPath = System.getProperty("user.home") + File.separator + ".ssh" + File.separator + "known_hosts";
+					if (!new File(defaultPath).isFile()) {
+						m_log.warn("static : StrictHostKeyChecking=" + strictHostKeyChecking + " but no known_hosts file found. "
+								+ "Configure infra.ssh.known.hosts.path or create " + defaultPath + ". SSH connections may be rejected.");
+					}
+				}
+			}
+
 			Hashtable<String, String> config = new Hashtable<>();
 			config.put("StrictHostKeyChecking", strictHostKeyChecking);
 			JSch.setConfig(config);
@@ -70,6 +81,13 @@ public class JschUtil {
 	private static JSch createJSch() throws JSchException {
 		JSch jsch = new JSch();
 		String knownHostsPath = HinemosPropertyCommon.infra_ssh_known_hosts_path.getStringValue();
+		if (knownHostsPath == null || knownHostsPath.isEmpty()) {
+			String defaultPath = System.getProperty("user.home") + File.separator + ".ssh" + File.separator + "known_hosts";
+			if (new File(defaultPath).isFile()) {
+				knownHostsPath = defaultPath;
+				m_log.info("createJSch : using system default known_hosts=" + defaultPath);
+			}
+		}
 		if (knownHostsPath != null && !knownHostsPath.isEmpty()) {
 			jsch.setKnownHosts(knownHostsPath);
 		}
