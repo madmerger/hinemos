@@ -66,9 +66,9 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/org.eclipse.rap.draw2d.compatibility_0.1.0.201512120638.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.rap.draw2d_0.1.0.201710301728.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-annotations-2.15.1.jar" sourcepath="/HinemosCommon/commonlib/jackson-annotations-2.15.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-core-2.15.1.jar" sourcepath="/HinemosCommon/commonlib/jackson-core-2.15.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-databind-2.15.1.jar" sourcepath="/HinemosCommon/commonlib/jackson-databind-2.15.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.18.7.jar" sourcepath="/HinemosCommon/commonlib/jackson-annotations-2.18.7-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.18.7.jar" sourcepath="/HinemosCommon/commonlib/jackson-core-2.18.7-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.18.7.jar" sourcepath="/HinemosCommon/commonlib/jackson-databind-2.18.7-sources.jar"/>
 	<classpathentry kind="lib" path="lib/castor-core-1.4.1.jar" sourcepath="/HinemosCommon/commonlib/castor-core-1.4.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/castor-xml-1.4.1.jar" sourcepath="/HinemosCommon/commonlib/castor-xml-1.4.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta.inject-api-1.0.3.jar" sourcepath="/HinemosCommon/commonlib/jakarta.inject-api-1.0.3-sources.jar"/>

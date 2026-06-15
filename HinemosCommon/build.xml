@@ -70,9 +70,9 @@
 		<copy file="commonlib/httpcore5-5.0.3.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/httpcore5-h2-5.0.3.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/slf4j-api-1.7.30.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/jackson-annotations-2.15.1.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/jackson-core-2.15.1.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/jackson-databind-2.15.1.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/jackson-annotations-2.18.7.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/jackson-core-2.18.7.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/jackson-databind-2.18.7.jar" todir="../HinemosManager/commonlib" />
 		
 		<delete dir="../HinemosManager/commonlib_rest" />
 		<copy file="commonlib/jakarta.annotation-api-1.3.5.jar" todir="../HinemosManager/commonlib_rest" />
@@ -115,9 +115,9 @@
 		<copy file="commonlib/gson-2.8.6.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/gson-fire-1.8.5.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/hamcrest-core-1.3.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/jackson-annotations-2.15.1.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/jackson-core-2.15.1.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/jackson-databind-2.15.1.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/jackson-annotations-2.18.7.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/jackson-core-2.18.7.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/jackson-databind-2.18.7.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/jsr305-3.0.2.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/okio-1.17.5.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/swagger-annotations-1.6.2.jar" todir="../HinemosWorkers/commonlib" />
@@ -182,9 +182,9 @@
 		<copy file="commonlib/gson-2.8.6.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/gson-fire-1.8.5.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/hamcrest-core-1.3.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/jackson-annotations-2.15.1.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/jackson-core-2.15.1.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/jackson-databind-2.15.1.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/jackson-annotations-2.18.7.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/jackson-core-2.18.7.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/jackson-databind-2.18.7.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/jakarta.annotation-api-1.3.5.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/jsr305-3.0.2.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/logging-interceptor-3.14.9.jar" todir="../HinemosClient/lib" />
