@@ -75,10 +75,10 @@
 			<fileset dir="${dir.lib}">
 				<include name="castor-xml-1.4.1.jar" />
 				<include name="castor-core-1.4.1.jar" />
-				<include name="log4j-1.2-api-2.17.1.jar" />
-				<include name="log4j-api-2.17.1.jar" />
-				<include name="log4j-core-2.17.1.jar" />
-				<include name="log4j-jcl-2.17.1.jar" />
+				<include name="log4j-1.2-api-2.26.0.jar" />
+				<include name="log4j-api-2.26.0.jar" />
+				<include name="log4j-core-2.26.0.jar" />
+				<include name="log4j-jcl-2.26.0.jar" />
 				<include name="commons-logging-1.2.jar"/>
 				<include name="commons-lang3-3.11.jar"/>
 			</fileset>

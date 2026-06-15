@@ -59,10 +59,10 @@
 		<delete dir="../HinemosManager/commonlib" />
 		<copy file="commonlib/commons-logging-1.2.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/commons-lang3-3.11.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/log4j-1.2-api-2.17.1.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/log4j-api-2.17.1.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/log4j-core-2.17.1.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/log4j-jcl-2.17.1.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/log4j-1.2-api-2.26.0.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/log4j-api-2.26.0.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/log4j-core-2.26.0.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/log4j-jcl-2.26.0.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/commons-codec-1.15.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/commons-lang3-3.11.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/commons-text-1.9.jar" todir="../HinemosManager/commonlib" />
@@ -98,10 +98,10 @@
 		<copy file="commonlib/commons-codec-1.15.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/commons-lang3-3.11.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/commons-text-1.9.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/log4j-1.2-api-2.17.1.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/log4j-api-2.17.1.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/log4j-core-2.17.1.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/log4j-jcl-2.17.1.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/log4j-1.2-api-2.26.0.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/log4j-api-2.26.0.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/log4j-core-2.26.0.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/log4j-jcl-2.26.0.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/jna-5.6.0.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/jna-platform-5.6.0.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/httpclient5-5.0.3.jar" todir="../HinemosWorkers/commonlib" />
@@ -161,10 +161,10 @@
 		
 		<copy file="${jar.dir}/${jar.file}" todir="../HinemosClient/lib" />
 		<copy file="commonlib/commons-logging-1.2.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/log4j-1.2-api-2.17.1.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/log4j-api-2.17.1.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/log4j-core-2.17.1.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/log4j-jcl-2.17.1.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/log4j-1.2-api-2.26.0.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/log4j-api-2.26.0.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/log4j-core-2.26.0.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/log4j-jcl-2.26.0.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/commons-codec-1.15.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/commons-lang3-3.11.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/commons-text-1.9.jar" todir="../HinemosClient/lib" />
