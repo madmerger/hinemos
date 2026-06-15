@@ -46,9 +46,9 @@
 	<classpathentry kind="lib" path="lib_reporting/poi-4.1.2.jar" sourcepath="lib_reporting/poi-4.1.2-sources.jar"/>
 	<classpathentry kind="lib" path="lib_reporting/SparseBitSet-1.2.jar" sourcepath="lib_reporting/SparseBitSet-1.2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/pcap4j-core-1.8.2.jar" sourcepath="lib/pcap4j-core-1.8.2-sources.jar"/>
-	<classpathentry kind="lib" path="commonlib/httpclient5-5.0.3.jar" sourcepath="/HinemosCommon/commonlib/httpclient5-5.0.3-sources.jar"/>
-	<classpathentry kind="lib" path="commonlib/httpcore5-5.0.3.jar" sourcepath="/HinemosCommon/commonlib/httpcore5-5.0.3-sources.jar"/>
-	<classpathentry kind="lib" path="commonlib/httpcore5-h2-5.0.3.jar" sourcepath="/HinemosCommon/commonlib/httpcore5-h2-5.0.3-sources.jar"/>
+	<classpathentry kind="lib" path="commonlib/httpclient5-5.3.1.jar" sourcepath="/HinemosCommon/commonlib/httpclient5-5.3.1-sources.jar"/>
+	<classpathentry kind="lib" path="commonlib/httpcore5-5.3.5.jar" sourcepath="/HinemosCommon/commonlib/httpcore5-5.3.5-sources.jar"/>
+	<classpathentry kind="lib" path="commonlib/httpcore5-h2-5.3.5.jar" sourcepath="/HinemosCommon/commonlib/httpcore5-h2-5.3.5-sources.jar"/>
 	<classpathentry kind="lib" path="commonlib_reporting/castor-core-1.4.1.jar" sourcepath="/HinemosCommon/commonlib/castor-core-1.4.1-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosManager/lib/eclipselink-3.0.2.jar" sourcepath="/HinemosManager/lib/eclipselink-3.0.2-sources.jar"/>
 	<classpathentry kind="lib" path="lib_reporting/commons-digester-2.1.jar" sourcepath="lib_reporting/commons-digester-2.1-sources.jar"/>

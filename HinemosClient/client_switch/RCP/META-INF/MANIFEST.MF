@@ -10,9 +10,9 @@ Bundle-Localization: resources/plugin
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: com.clustercontrol.ClusterControlPlugin
 Bundle-ClassPath: HinemosClient.jar,
- lib/httpclient5-5.0.3.jar,
- lib/httpcore5-5.0.3.jar,
- lib/httpcore5-h2-5.0.3.jar,
+ lib/httpclient5-5.3.1.jar,
+ lib/httpcore5-5.3.5.jar,
+ lib/httpcore5-h2-5.3.5.jar,
  lib/slf4j-api-1.7.30.jar,
  lib/okhttp-digest-1.20.jar,
  lib/gson-2.8.6.jar,
