@@ -23,8 +23,8 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.TimeTableXYDataset;
 
-import net.sf.jasperreports.engine.JRChart;
-import net.sf.jasperreports.engine.JRChartCustomizer;
+import net.sf.jasperreports.charts.JRChart;
+import net.sf.jasperreports.charts.JRChartCustomizer;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;

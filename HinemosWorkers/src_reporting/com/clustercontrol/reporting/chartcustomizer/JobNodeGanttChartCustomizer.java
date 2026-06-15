@@ -13,12 +13,13 @@ import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.DateTickMarkPosition;
 import org.jfree.chart.axis.DateTickUnit;
+import org.jfree.chart.axis.DateTickUnitType;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.ui.RectangleInsets;
+import org.jfree.chart.ui.RectangleInsets;
 
-import net.sf.jasperreports.engine.JRChart;
-import net.sf.jasperreports.engine.JRChartCustomizer;
+import net.sf.jasperreports.charts.JRChart;
+import net.sf.jasperreports.charts.JRChartCustomizer;
 
 public class JobNodeGanttChartCustomizer implements JRChartCustomizer {
 
@@ -33,7 +34,7 @@ public class JobNodeGanttChartCustomizer implements JRChartCustomizer {
 		//rangeAxis.setMinorTickCount(2);
 		rangeAxis.setRange(rangeAxis.getLowerBound() - 1.0d, rangeAxis.getUpperBound() + 1.0d);
 		rangeAxis.setAutoTickUnitSelection(false);
-		((DateAxis)rangeAxis).setTickUnit(new DateTickUnit(DateTickUnit.HOUR, 2));
+		((DateAxis)rangeAxis).setTickUnit(new DateTickUnit(DateTickUnitType.HOUR, 2));
 		((DateAxis)rangeAxis).setTickMarkPosition(DateTickMarkPosition.START);
 		plot.setInsets(new RectangleInsets(2.0d, 1.0d, 2.0d, 1.0d));
 	}

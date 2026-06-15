@@ -25,7 +25,7 @@ import com.clustercontrol.reporting.factory.TemplateBase;
 import com.clustercontrol.reporting.fault.ReportingPropertyNotFound;
 
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.pdf.JRPdfExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;

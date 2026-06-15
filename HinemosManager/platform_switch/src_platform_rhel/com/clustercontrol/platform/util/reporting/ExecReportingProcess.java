@@ -203,8 +203,8 @@ public class ExecReportingProcess {
 			
 			//レポート作成に必要なjarファイルが配置されているか確認
 			String[] jarFileList = {"castor-core-", "castor-xml-", "commons-beanutils-", "commons-collections-", "commons-collections4-", "commons-digester-", "commons-lang3-", 
-					"ecj-", "itext-", "iTextAsian", "iTextAsianCmaps", "jakarta.inject-api-", "jasperreports-functions-", "jasperreports-fonts-", "jasperreports-", 
-					"jcommon-", "jfreechart-", "poi-", "SparseBitSet-"};
+					"ecj-", "openpdf-", "iTextAsian", "iTextAsianCmaps", "jakarta.inject-api-", "jasperreports-functions-", "jasperreports-fonts-", "jasperreports-pdf-", "jasperreports-charts-", "jasperreports-metadata-", "jasperreports-", 
+					"jfreechart-", "poi-", "SparseBitSet-"};
 			int countJars = 0;
 			if (libFileList != null) {
 				for(String libFile: libFileList) {
