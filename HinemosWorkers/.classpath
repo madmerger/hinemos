@@ -104,17 +104,17 @@
 	<classpathentry kind="lib" path="lib/iam-2.39.6.jar"/>
 	<classpathentry kind="lib" path="lib/json-utils-2.39.6.jar"/>
 	<classpathentry kind="lib" path="lib/metrics-spi-2.39.6.jar"/>
-	<classpathentry kind="lib" path="lib/netty-buffer-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-codec-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-codec-http-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-codec-http2-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-common-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-handler-4.1.126.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-buffer-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-codec-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-codec-http-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-codec-http2-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-common-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-handler-4.1.135.Final.jar"/>
 	<classpathentry kind="lib" path="lib/netty-nio-client-2.39.6.jar"/>
-	<classpathentry kind="lib" path="lib/netty-resolver-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-transport-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-transport-classes-epoll-4.1.126.Final.jar"/>
-	<classpathentry kind="lib" path="lib/netty-transport-native-unix-common-4.1.126.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-resolver-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-transport-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-transport-classes-epoll-4.1.135.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-transport-native-unix-common-4.1.135.Final.jar"/>
 	<classpathentry kind="lib" path="lib/profiles-2.39.6.jar"/>
 	<classpathentry kind="lib" path="lib/protocol-core-2.39.6.jar"/>
 	<classpathentry kind="lib" path="lib/reactive-streams-1.0.4.jar"/>
