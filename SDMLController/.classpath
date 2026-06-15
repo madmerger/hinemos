@@ -5,10 +5,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/HinemosManager"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/HinemosCommon"/>
-	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-1.2-api-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-1.2-api-2.17.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-api-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-api-2.17.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-core-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-core-2.17.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-jcl-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-jcl-2.17.1-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-1.2-api-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-1.2-api-2.26.0-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-api-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-api-2.26.0-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-core-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-core-2.26.0-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosManager/commonlib/log4j-jcl-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-jcl-2.26.0-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosManager/lib_rest/aopalliance-repackaged-2.6.1.jar"/>
 	<classpathentry kind="lib" path="/HinemosManager/lib_rest/aspectjweaver-1.9.6.jar" sourcepath="/HinemosManager/lib_rest/aspectjweaver-1.9.6-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosManager/lib_rest/grizzly-framework-2.4.4.jar"/>

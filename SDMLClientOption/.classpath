@@ -6,10 +6,10 @@
 	<classpathentry kind="src" path="src_utility"/>
 	<classpathentry kind="src" path="src_utility_xmlschema"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/HinemosClient"/>
-	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-1.2-api-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-1.2-api-2.17.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-api-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-api-2.17.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-core-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-core-2.17.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-jcl-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-jcl-2.17.1-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-1.2-api-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-1.2-api-2.26.0-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-api-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-api-2.26.0-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-core-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-core-2.26.0-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-jcl-2.26.0.jar" sourcepath="/HinemosCommon/commonlib/log4j-jcl-2.26.0-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-annotations-2.15.1.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-annotations-2.15.1-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-core-2.15.1.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-core-2.15.1-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-databind-2.15.1.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-databind-2.15.1-sources.jar"/>
