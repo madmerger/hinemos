@@ -86,10 +86,11 @@
 		<copy file="commonlib/gson-fire-1.8.5.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/hamcrest-core-1.3.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/jsr305-3.0.2.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/logging-interceptor-3.14.9.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/okhttp-3.14.9.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/okhttp-digest-1.20.jar" todir="../HinemosManager/commonlib" />
-		<copy file="commonlib/okio-1.17.5.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/logging-interceptor-4.9.2.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/okhttp-4.9.2.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/okhttp-digest-2.1.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/okio-2.8.0.jar" todir="../HinemosManager/commonlib" />
+		<copy file="commonlib/kotlin-stdlib-1.5.31.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/swagger-annotations-1.6.2.jar" todir="../HinemosManager/commonlib" />
 		<copy file="commonlib/threetenbp-1.5.0.jar" todir="../HinemosManager/commonlib" />
 
@@ -119,7 +120,8 @@
 		<copy file="commonlib/jackson-core-2.15.1.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/jackson-databind-2.15.1.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/jsr305-3.0.2.jar" todir="../HinemosWorkers/commonlib" />
-		<copy file="commonlib/okio-1.17.5.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/okio-2.8.0.jar" todir="../HinemosWorkers/commonlib" />
+		<copy file="commonlib/kotlin-stdlib-1.5.31.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/swagger-annotations-1.6.2.jar" todir="../HinemosWorkers/commonlib" />
 		<copy file="commonlib/threetenbp-1.5.0.jar" todir="../HinemosWorkers/commonlib" />
 
@@ -154,6 +156,7 @@
 				<include name="okhttp-*.jar" />
 				<include name="okhttp-digest-*.jar" />
 				<include name="okio-*.jar" />
+				<include name="kotlin-stdlib-*.jar" />
 				<include name="swagger-annotations-*.jar" />
 				<include name="threetenbp-*.jar" />
 			</fileset>
@@ -187,10 +190,11 @@
 		<copy file="commonlib/jackson-databind-2.15.1.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/jakarta.annotation-api-1.3.5.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/jsr305-3.0.2.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/logging-interceptor-3.14.9.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/okhttp-3.14.9.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/okhttp-digest-1.20.jar" todir="../HinemosClient/lib" />
-		<copy file="commonlib/okio-1.17.5.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/logging-interceptor-4.9.2.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/okhttp-4.9.2.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/okhttp-digest-2.1.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/okio-2.8.0.jar" todir="../HinemosClient/lib" />
+		<copy file="commonlib/kotlin-stdlib-1.5.31.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/swagger-annotations-1.6.2.jar" todir="../HinemosClient/lib" />
 		<copy file="commonlib/threetenbp-1.5.0.jar" todir="../HinemosClient/lib" />
 
@@ -201,9 +205,10 @@
 		<copy file="commonlib/hamcrest-core-1.3.jar" todir="../HinemosHA/clientlib" />
 		<copy file="commonlib/jakarta.annotation-api-1.3.5.jar" todir="../HinemosHA/clientlib" />
 		<copy file="commonlib/jsr305-3.0.2.jar" todir="../HinemosHA/clientlib" />
-		<copy file="commonlib/logging-interceptor-3.14.9.jar" todir="../HinemosHA/clientlib" />
-		<copy file="commonlib/okhttp-3.14.9.jar" todir="../HinemosHA/clientlib" />
-		<copy file="commonlib/okio-1.17.5.jar" todir="../HinemosHA/clientlib" />
+		<copy file="commonlib/logging-interceptor-4.9.2.jar" todir="../HinemosHA/clientlib" />
+		<copy file="commonlib/okhttp-4.9.2.jar" todir="../HinemosHA/clientlib" />
+		<copy file="commonlib/okio-2.8.0.jar" todir="../HinemosHA/clientlib" />
+		<copy file="commonlib/kotlin-stdlib-1.5.31.jar" todir="../HinemosHA/clientlib" />
 		<copy file="commonlib/swagger-annotations-1.6.2.jar" todir="../HinemosHA/clientlib" />
 		<copy file="commonlib/threetenbp-1.5.0.jar" todir="../HinemosHA/clientlib" />
 
