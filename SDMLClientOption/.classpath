@@ -10,9 +10,9 @@
 	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-api-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-api-2.17.1-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-core-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-core-2.17.1-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/log4j-jcl-2.17.1.jar" sourcepath="/HinemosCommon/commonlib/log4j-jcl-2.17.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-annotations-2.15.1.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-annotations-2.15.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-core-2.15.1.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-core-2.15.1-sources.jar"/>
-	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-databind-2.15.1.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-databind-2.15.1-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-annotations-2.18.7.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-annotations-2.18.7-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-core-2.18.7.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-core-2.18.7-sources.jar"/>
+	<classpathentry kind="lib" path="/HinemosClient/lib/jackson-databind-2.18.7.jar" sourcepath="/HinemosCommon/rest_clientlib/jackson-databind-2.18.7-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/okhttp-3.14.9.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/okhttp-digest-1.20.jar"/>
 	<classpathentry kind="lib" path="/HinemosClient/lib/okio-1.17.5.jar"/>
