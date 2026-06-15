@@ -119,7 +119,7 @@
 	<classpathentry kind="lib" path="commonlib/okio-1.17.5.jar" sourcepath="/HinemosCommon/commonlib/okio-1.17.5-sources.jar"/>
 	<classpathentry kind="lib" path="commonlib/swagger-annotations-1.6.2.jar" sourcepath="/HinemosCommon/commonlib/swagger-annotations-1.6.2-sources.jar"/>
 	<classpathentry kind="lib" path="commonlib/threetenbp-1.5.0.jar" sourcepath="/HinemosCommon/commonlib/threetenbp-1.5.0-sources.jar"/>
-	<classpathentry kind="lib" path="commonlib/commons-lang3-3.11.jar" sourcepath="/HinemosCommon/commonlib/commons-lang3-3.11-sources.jar"/>
+	<classpathentry kind="lib" path="commonlib/commons-lang3-3.18.0.jar" sourcepath="/HinemosCommon/commonlib/commons-lang3-3.18.0-sources.jar"/>
 	<classpathentry kind="lib" path="/HinemosCommon/build/jar/HinemosVersion.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
