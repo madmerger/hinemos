@@ -254,8 +254,7 @@ public class DownloadBinary {
 		try {
 			String canonicalDir = tmpDirectory.getCanonicalPath();
 			String canonicalFile = this.tmpFile.getCanonicalPath();
-			if (!canonicalFile.equals(canonicalDir)
-					&& !canonicalFile.startsWith(canonicalDir + File.separator)) {
+			if (!canonicalFile.startsWith(canonicalDir + File.separator)) {
 				String message = String.format(
 						"filename is out of the temporary directory. dirName=[%s], fileName=[%s]", canonicalDir,
 						this.fileName);
