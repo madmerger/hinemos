@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.clustercontrol.fault.InvalidSetting;
 import com.clustercontrol.rest.dto.RequestDto;
+import com.clustercontrol.util.FileUtil;
 
 public class DownloadBinaryRecordsRequest implements RequestDto {
 
@@ -49,5 +50,7 @@ public class DownloadBinaryRecordsRequest implements RequestDto {
 
 	@Override
 	public void correlationCheck() throws InvalidSetting {
+		// パストラバーサル防止: ファイル名にパス区切り文字・親ディレクトリ参照を含まないこと.
+		FileUtil.validateDownloadFileName(this.filename);
 	}
 }

@@ -249,6 +249,24 @@ public class DownloadBinary {
 
 		// 一時出力先のファイルオブジェクト生成.
 		this.tmpFile = new File(this.dirName, this.fileName);
+
+		// パストラバーサル防止: 生成ファイルが一時ディレクトリ配下に収まることを正規化パスで確認.
+		try {
+			String canonicalDir = tmpDirectory.getCanonicalPath();
+			String canonicalFile = this.tmpFile.getCanonicalPath();
+			if (!canonicalFile.equals(canonicalDir)
+					&& !canonicalFile.startsWith(canonicalDir + File.separator)) {
+				String message = String.format(
+						"filename is out of the temporary directory. dirName=[%s], fileName=[%s]", canonicalDir,
+						this.fileName);
+				m_log.warn(methodName + DELIMITER + message);
+				throw new HinemosUnknown(message);
+			}
+		} catch (java.io.IOException e) {
+			m_log.warn(methodName + DELIMITER + e.getMessage(), e);
+			throw new HinemosUnknown(e.getMessage(), e);
+		}
+
 		this.addWrite = tmpFile.exists();
 		m_log.debug(methodName + DELIMITER
 				+ String.format("prepared to write binary. dirName=[%s], fileName=[%s], addWrite=%b", this.dirName,

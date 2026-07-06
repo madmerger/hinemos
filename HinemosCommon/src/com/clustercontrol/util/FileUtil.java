@@ -212,6 +212,37 @@ public class FileUtil {
 	}
 
 	/**
+	 * ダウンロードファイル名の妥当性チェック.<br>
+	 * <br>
+	 * クライアントから指定されたファイル名がパストラバーサルに利用され得る文字列を<br>
+	 * 含んでいないか検証する。パス区切り文字("/"・"\")、NUL文字、カレント/親ディレクトリ<br>
+	 * 参照(".", "..")を含む場合は{@link InvalidSetting}を送出する。<br>
+	 * null・空文字の場合は呼出元でデフォルトファイル名が採用されるため許容する。
+	 * 
+	 * @param fileName
+	 *            チェック対象のファイル名(クライアント指定).
+	 * 
+	 * @throws InvalidSetting
+	 *             ファイル名にパス区切り文字・NUL文字・親ディレクトリ参照が含まれる場合.
+	 */
+	public static void validateDownloadFileName(String fileName) throws InvalidSetting {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		// null・空文字は呼出元でデフォルト名が採用されるため許容.
+		if (fileName == null || fileName.isEmpty()) {
+			return;
+		}
+
+		// パス区切り文字・NUL文字・親/カレントディレクトリ参照を拒否.
+		if (fileName.indexOf('/') >= 0 || fileName.indexOf('\\') >= 0 || fileName.indexOf('\0') >= 0
+				|| fileName.equals(".") || fileName.equals("..")) {
+			String message = String.format("filename contains invalid path characters. filename=[%s]", fileName);
+			log.warn(methodName + DELIMITER + message);
+			throw new InvalidSetting(message);
+		}
+	}
+
+	/**
 	 * ファイル名変換.<br>
 	 * <br>
 	 * ファイル名に使用不可の記号を引数指定の文字列に変換する.<br>

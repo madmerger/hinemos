@@ -808,6 +808,23 @@ public class BinaryControllerBean {
 
 		// マネージャーの出力先ファイルを生成.
 		File ouputZip = new File(tempDir, ouputZipName);
+
+		// パストラバーサル防止: 出力zipが一時ディレクトリ配下に収まることを正規化パスで確認.
+		try {
+			String canonicalDir = new File(tempDir).getCanonicalPath();
+			String canonicalZip = ouputZip.getCanonicalPath();
+			if (!canonicalZip.startsWith(canonicalDir + File.separator)) {
+				String message = String.format(
+						"ouputZipName is out of the temporary directory. tempDir=[%s], ouputZipName=[%s]", canonicalDir,
+						ouputZipName);
+				m_log.warn(methodName + DELIMITER + message);
+				throw new HinemosUnknown(message);
+			}
+		} catch (IOException e) {
+			m_log.warn(methodName + DELIMITER + e.getMessage(), e);
+			throw new HinemosUnknown(e.getMessage(), e);
+		}
+
 		m_log.debug(methodName + DELIMITER
 				+ String.format("create file object to outpu zip. file=[%s]", ouputZip.getAbsolutePath()));
 
