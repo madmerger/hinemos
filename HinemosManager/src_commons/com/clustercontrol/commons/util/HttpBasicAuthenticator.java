@@ -65,6 +65,11 @@ public class HttpBasicAuthenticator {
 
 		account = getAccount(authzHeader);
 		int firstColon = account.indexOf(":");
+		if (firstColon < 0) {
+			String message = "invalid authentication information";
+			m_log.info(methodName + DELIMITER + message);
+			throw new InvalidUserPass(message);
+		}
 		username = account.substring(0, firstColon);
 		password = account.substring(firstColon + 1);
 		m_log.trace("username=" + username + ", password=" + password);
@@ -126,10 +131,21 @@ public class HttpBasicAuthenticator {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		m_log.trace("accountBase64 : " + accountBase64);
-		if (!"Basic".equalsIgnoreCase(accountBase64.split(" ")[0])) {
-			m_log.info(methodName + DELIMITER + "Basic auth does not exist : " + accountBase64.split(" ")[0]);
+		if (accountBase64 == null) {
+			String message = "need authentication information";
+			m_log.info(methodName + DELIMITER + message);
+			throw new InvalidUserPass(message);
 		}
-		accountBase64 = accountBase64.split(" ")[1];
+		String[] headerElements = accountBase64.split(" ");
+		if (!"Basic".equalsIgnoreCase(headerElements[0])) {
+			m_log.info(methodName + DELIMITER + "Basic auth does not exist : " + headerElements[0]);
+		}
+		if (headerElements.length < 2) {
+			String message = "invalid authentication information";
+			m_log.info(methodName + DELIMITER + message);
+			throw new InvalidUserPass(message);
+		}
+		accountBase64 = headerElements[1];
 		return new String(Base64.decodeBase64(accountBase64));
 	}
 

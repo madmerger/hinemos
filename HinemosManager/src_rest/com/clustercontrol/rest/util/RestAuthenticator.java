@@ -190,6 +190,13 @@ public class RestAuthenticator {
 				// DB接続不可など.
 				return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
 						.entity(new ExceptionBody(Status.INTERNAL_SERVER_ERROR.getStatusCode(), e)).build();
+			} catch (Exception e) {
+				// 予期せぬ例外は認証NG扱いとする.
+				log.error("authCheck() : Exception=" + e.getMessage(), e);
+				return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+						.entity(new ExceptionBody(Status.INTERNAL_SERVER_ERROR.getStatusCode(),
+								new HinemosUnknown("authentication failed")))
+						.build();
 			}
 		} else if (useBearerAuth && bearerAuthHeader != null) {
 			// Bearer認証が設定されている場合
@@ -207,6 +214,13 @@ public class RestAuthenticator {
 				// DB接続不可など.
 				return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
 						.entity(new ExceptionBody(Status.INTERNAL_SERVER_ERROR.getStatusCode(), e)).build();
+			} catch (Exception e) {
+				// 予期せぬ例外は認証NG扱いとする.
+				log.error("authCheck() : Exception=" + e.getMessage(), e);
+				return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+						.entity(new ExceptionBody(Status.INTERNAL_SERVER_ERROR.getStatusCode(),
+								new HinemosUnknown("authentication failed")))
+						.build();
 			}
 		} else {
 			// 対応している認証情報なし
