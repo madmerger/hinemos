@@ -16,11 +16,14 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.clustercontrol.bean.RestHeaderConstant;
+import com.clustercontrol.fault.HinemosUnknown;
+import com.clustercontrol.rest.exception.ExceptionBody;
 import com.clustercontrol.rest.util.RestAuthenticator;
 
 /**
@@ -60,7 +63,12 @@ public class BearerAuthenticationFilter implements ContainerRequestFilter {
 				reqContext.abortWith(checkResult);
 			}
 		} catch (Exception e) {
-			log.error("filter() : Exception=" + e.getMessage());
+			// 認証処理中の予期せぬ例外はフェイルクローズとし、リクエストを中断する
+			log.error("filter() : Exception=" + e.getMessage(), e);
+			reqContext.abortWith(Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity(new ExceptionBody(Status.INTERNAL_SERVER_ERROR.getStatusCode(),
+							new HinemosUnknown("authentication failed")))
+					.build());
 		}
 	}
 
