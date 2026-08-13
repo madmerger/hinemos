@@ -138,7 +138,9 @@ public class HttpBasicAuthenticator {
 		}
 		String[] headerElements = accountBase64.split(" ");
 		if (!"Basic".equalsIgnoreCase(headerElements[0])) {
-			m_log.info(methodName + DELIMITER + "Basic auth does not exist : " + headerElements[0]);
+			String message = "Basic auth does not exist";
+			m_log.info(methodName + DELIMITER + message + " : " + headerElements[0]);
+			throw new InvalidUserPass(message);
 		}
 		if (headerElements.length < 2) {
 			String message = "invalid authentication information";
